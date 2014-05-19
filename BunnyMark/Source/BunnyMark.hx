@@ -22,6 +22,7 @@ class BunnyMark extends Sprite {
 	private var background:Background;
 	private var fps:FPS;
 	
+	var active : Bool;
 	
 	public function new () {
 		
@@ -51,6 +52,12 @@ class BunnyMark extends Sprite {
 		
 		fps.addEventListener (MouseEvent.CLICK, fps_onClick);
 		stage.addEventListener (Event.RESIZE, stage_onResize);
+
+		active = true;
+        stage.addEventListener(MouseEvent.CLICK, onClick);
+        stage.addEventListener(Event.ACTIVATE, onActivate);
+        stage.addEventListener(Event.DEACTIVATE, onDeactivate);		
+		
 		
 	}
 	
@@ -59,6 +66,25 @@ class BunnyMark extends Sprite {
 	
 	// Event Handlers
 	
+	
+	
+
+    function onActivate(e:Event){
+		trace( "onActivate" );
+    }
+
+    function onDeactivate(e:Event){
+		trace( "onDeactivate" );
+    }
+
+
+	function onClick( e ) {
+		for( i in 0...5000 ) {
+			active = !active;
+			stage.__setActive( active );
+		}
+		trace( "active?=" + active );
+	}
 	
 	
 	
